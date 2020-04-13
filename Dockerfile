@@ -47,9 +47,10 @@ RUN composer global require hirak/prestissimo
 COPY ./docker-configs/php/php.ini $PHP_INI_DIR/custom.ini
 COPY ./docker-configs/httpd/app.site.conf /etc/apache2/sites-available/000-default.conf
 
+WORKDIR /var/www/html
 
-#WORKDIR /var/www/html/myapp
+COPY . /var/www/html
 
 EXPOSE 8081
 
-#COPY --chown=www:www . /var/www
+
