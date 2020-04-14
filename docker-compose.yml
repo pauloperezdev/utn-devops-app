@@ -8,14 +8,14 @@ services:
       - "8081:80"
     depends_on:
       - db_server
-    domainname: ${APP_DOMAIN}
-    hostname: ${APP_HOSTNAME}
+    domainname: ${CONTAINER_DOMAIN}
+    hostname: ${CONTAINER_HOSTNAME}
     env_file:
       - .env
     networks:
       default:
         aliases:
-          - ${APP_DOMAIN}
+          - "${CONTAINER_HOSTNAME}.${CONTAINER_DOMAIN}"
     #volumes:
       #- .:/var/www/html # uncomment for local development
   db_server:
