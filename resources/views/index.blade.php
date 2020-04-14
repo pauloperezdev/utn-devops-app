@@ -17,7 +17,7 @@
                 <aside class="col sidebar box">
                     <h2>Variables de entorno</h2>
                     <div class="row">
-                        <p>APP_HOSTNAME:  {{ env("APP_HOSTNAME", "not set") }}</p>
+                        <p>CONTAINER_HOSTNAME:  {{ env("CONTAINER_HOSTNAME", "not set") }}</p>
                         <p>APP_URL: {{ env("APP_URL", "not set") }}</p>
                         <p>DB_DATABASE: {{ env("DB_DATABASE", "not set") }}</p>
                         <p>APP_ENV: {{ env("APP_ENV", "not set") }}</p>
