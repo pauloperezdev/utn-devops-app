@@ -14,12 +14,12 @@ fi
 
 # hosts
 if [ -f "/tmp/hosts" ]; then
-	sudo cp -f /tmp/hosts /etc/hosts
+	sudo mv -f /tmp/hosts /etc/hosts
 fi
 
 # firewall
 if [ -f "/tmp/ufw" ]; then
-	sudo cp -f /tmp/ufw /etc/default/ufw
+	sudo mv -f /tmp/ufw /etc/default/ufw
 fi
 
 ##Swap
@@ -55,7 +55,15 @@ fi
 
 # docker private registry certificate
 if [ -f "/tmp/domain.crt" ]; then
-	sudo cp -f /tmp/domain.crt /usr/local/share/ca-certificates/
+	sudo mv -f /tmp/domain.crt /usr/local/share/ca-certificates/
 	sudo update-ca-certificates
 	sudo systemctl restart docker
+fi
+
+if [ -f "/tmp/config.json" ]; then
+    if [ ! -d "/home/vagrant/.docker" ]; then
+        sudo mkdir /home/vagrant/.docker
+    fi
+    sudo mv -f /tmp/config.json /home/vagrant/.docker
+   	sudo systemctl restart docker
 fi

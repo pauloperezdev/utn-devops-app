@@ -1,48 +1,6 @@
-#FROM docker-registry.int:5000/myapp_php
-
-#RUN composer global require hirak/prestissimo
-
-#COPY . /var/www/html/myapp
-
-
-#EXPOSE 8081
-################
-FROM php:7.2-apache
-
-LABEL maintainer="David Fichtenbaum"
-
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    git \
-    zip \
-    curl \
-    sudo \
-    unzip \
-    libicu-dev \
-    libbz2-dev \
-    libpng-dev \
-    libjpeg-dev \
-    libmcrypt-dev \
-    libreadline-dev \
-    libfreetype6-dev \
-    g++ \
-    libcurl4-openssl-dev \
-    && docker-php-ext-install \
-    bz2 \
-    intl \
-    iconv \
-    bcmath \
-    opcache \
-    calendar \
-    mbstring \
-    pdo_mysql \
-    zip \
-    curl \
-    && apt-get autoclean && apt-get clean
-#
-
-RUN curl https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-
-RUN composer global require hirak/prestissimo
+# Custom base image in a private registry from https://github.com/Fichen/utn-devops/blob/unidad-5-integrador/docker/registry/Dockerfile.base
+# domain name resolution has been set hosts file in https://github.com/Fichen/utn-devops/blob/unidad-5-integrador/hostConfigs/etc_hosts.txt
+FROM docker-registry.int:5000/myapp-example
 
 COPY ./docker-configs/php/php.ini $PHP_INI_DIR/custom.ini
 COPY ./docker-configs/httpd/app.site.conf /etc/apache2/sites-available/000-default.conf

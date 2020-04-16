@@ -15,7 +15,7 @@ services:
     networks:
       default:
         aliases:
-          - "${CONTAINER_HOSTNAME}.${CONTAINER_DOMAIN}"
+          - ${CONTAINER_HOSTNAME}.${CONTAINER_DOMAIN}
     #volumes:
       #- .:/var/www/html # uncomment for local development
   db_server:
