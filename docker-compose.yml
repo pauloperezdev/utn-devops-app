@@ -2,6 +2,7 @@ version: "3.5"
 services:
   php:
     container_name: apache2_php
+    image: docker-registry.int:5000/myapp-example
     build: .
     restart: unless-stopped
     ports:
